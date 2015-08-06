@@ -1,7 +1,7 @@
 package io.x0x.model;
 
+import io.x0x.model.exceptions.AlreaedyOccupiedException;
 import io.x0x.model.exceptions.InvalidePointException;
-import sun.plugin2.gluegen.runtime.CPU;
 
 import java.awt.*;
 
@@ -24,9 +24,12 @@ public class Field {
         return field[point.x][point.y];
     }
 
-    public void setFiure(final Point point, final Figure figure) throws InvalidePointException{
+    public void setFigure(final Point point, final Figure figure) throws InvalidePointException, AlreaedyOccupiedException{
         if (!checkPoint(point)) {
             throw new InvalidePointException();
+        }
+        if (field[point.x][point.y]!=null){
+            throw new AlreaedyOccupiedException();
         }
         field[point.x][point.y] = figure;
     }
