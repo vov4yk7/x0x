@@ -1,5 +1,6 @@
 package io.x0x.model;
 
+import io.x0x.model.exceptions.InvalidPointException;
 import org.junit.Test;
 
 import java.awt.*;
@@ -18,18 +19,44 @@ public class FieldTest {
     }
 
     @Test
-    public void testGetFigure() throws Exception {
+    public void testGetFigureWhenFigureIsNotSet() throws Exception {
+        final Field field = new Field();
+        final Point inputPoin = new Point(0,0);
 
+        final Figure actualFigure = field.getFigure(inputPoin);
+        assertEquals(null,actualFigure);
     }
 
     @Test
-    public void testSetFiure() throws Exception {
+    public void testGetFigureWhenXIsLessThenTherro() throws Exception {
+        final Field field = new Field();
+        final Point inputPoin = new Point(field.getSize()+1,0);
+
+        try {
+            field.getFigure(inputPoin);
+            fail();
+        }catch (final InvalidPointException e){}
+    }
+
+    @Test
+    public void testGetFigureWhenYIsLessThenTherro() throws Exception {
+        final Field field = new Field();
+        final Point inputPoin = new Point(field.getSize()+1,0);
+
+        try {
+            field.getFigure(inputPoin);
+            fail();
+        }catch (final InvalidPointException e){}
+    }
+
+    @Test
+    public void testSetFigure() throws Exception {
 
         final Field field = new Field();
         final Point inputPoin = new Point(0,0);
         final Figure inputFigure = Figure.O;
 
-        field.setFiure(inputPoin,inputFigure);
+        field.setFigure(inputPoin, inputFigure);
         final Figure actualFigure = field.getFigure(inputPoin);
         assertEquals(inputFigure,actualFigure);
 
