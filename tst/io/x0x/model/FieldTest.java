@@ -63,18 +63,5 @@ public class FieldTest {
 
     }
 
-    @Test
-    public void testSetFigureWhenAlreadyOccupied() throws Exception{
 
-        final Field field = new Field();
-        final Point inputPoin = new Point(0,0);
-        final Figure inputFigure = Figure.O;
-
-        field.setFigure(inputPoin, inputFigure);
-        try {
-            field.setFigure(inputPoin, inputFigure);
-            fail();
-        }catch (final AlreadyOccupiedException e){}
-
-    }
 }
